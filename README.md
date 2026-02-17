@@ -1,5 +1,46 @@
 # AI Experts Assignment (Python)
 
+## Running tests
+
+### Locally
+
+1. Create a virtual environment (optional but recommended):
+
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate   
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the test suite:
+
+   ```bash
+   pytest -v
+   ```
+
+   Or: `python -m pytest -v`
+
+### With Docker
+
+1. Build the image:
+
+   ```bash
+   docker build -t ai-experts-assignment .
+   ```
+
+2. Run the container (runs tests by default):
+
+   ```bash
+   docker run ai-experts-assignment
+   ```
+
+---
+
 This assignment evaluates your ability to:
 
 - set up a small Python project to run reliably (locally + in Docker),

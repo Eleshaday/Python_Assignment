@@ -43,3 +43,16 @@ def test_api_request_refreshes_when_token_is_dict():
     resp = c.request("GET", "/me", api=True)
 
     assert resp["headers"].get("Authorization") == "Bearer fresh-token"
+
+
+def test_api_request_refreshes_when_token_is_dict_even_with_future_expiry():
+    """Dict tokens are never used; we always refresh. Valid-looking dict still triggers refresh."""
+    c = Client()
+    c.oauth2_token = {
+        "access_token": "dict-token-should-be-ignored",
+        "expires_at": int(time.time()) + 3600,
+    }
+
+    resp = c.request("GET", "/me", api=True)
+
+    assert resp["headers"].get("Authorization") == "Bearer fresh-token"
